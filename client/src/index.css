@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap");
+@tailwind base;
+
+@layer base {
+  html {
+    @apply text-neutral-800;
+  }
+  html.dark {
+    @apply text-neutral-50;
+    @apply bg-neutral-800;
+  }
+}
+
+@tailwind components;
+@tailwind utilities;
+
+input[type="text"],input[type="password"],input[type="email"]{
+  @apply w-full border my-2 py-2 px-3 rounded-2xl;
+}
+
+button{
+  @apply bg-gray-300;
+}
+
+button.primary{
+  background-color: rgb(255,56,92);
+  @apply bg-primary p-2 w-full text-white rounded-2xl;
+}
