@@ -5,9 +5,11 @@ require('dotenv').config();
 const app = express();
 const bcrypt = require('bcryptjs');
 const User = require('./models/User');
+const jwt = require('jsonwebtoken');
 
 const bcryptsalt = bcrypt.genSaltSync(10);
 
+const jwtSecret = "dkjahlsdkfjaeop;wifj0230-rqpefioaj";
 
 app.use(express.json());
 
@@ -62,7 +64,10 @@ app.post('/login', async(req, res)=>{
     if(userfound){
         const passOk = bcrypt.compareSync(password, userfound.password);
         if(passOk){
-            res.json('pass okk');
+            jwt.sign({email: userfound.email, id:userfound._id}, jwtSecret, {},(err, token)=>{
+                if(err) throw err;
+                res.cookie('token', token).json('pass ok');
+            })
         }
         else{
             res.json('pass not ok')
