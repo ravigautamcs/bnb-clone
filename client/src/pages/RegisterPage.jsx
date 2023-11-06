@@ -10,12 +10,17 @@ export default function RegisterPage(){
     async function registerUser(ev) {
         ev.preventDefault();
         // axios.post('/register')
-        await axios.post('/register',{
-            name, 
-            email,
-            password,
-        });
-        alert('registration successful!!!')
+
+        try{
+            await axios.post('/register',{
+                name, 
+                email,
+                password,
+            });
+            alert('registration successful!!! Now you can login')
+        }catch(e){
+            alert("Registration Failed!!! User already exists!!")
+        }
     }
 
     return (
